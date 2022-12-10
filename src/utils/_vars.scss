@@ -1,0 +1,5 @@
+$grid_color: #00f;
+$margin-standart: 0;
+$grid_margin: percentage(calc($margin-standart / 1920)); // 40 / 1920 * 100%;
+$grid_width: percentage(calc(165 / (1920 - $margin-standart * 2)));
+$grid_gutter: percentage(calc(30 / (1920 - $margin-standart * 2)));
