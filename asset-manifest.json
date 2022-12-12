@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/verenia-test/static/css/main.ed8de805.css",
+    "main.js": "/verenia-test/static/js/main.1bf0bd4c.js",
+    "static/media/image_2.3.png": "/verenia-test/static/media/image_2.3.ae0183141c8236a8b9cb.png",
+    "static/media/MaskGroup.png": "/verenia-test/static/media/MaskGroup.4cb749e49b399ebb93d4.png",
+    "static/media/Oval.png": "/verenia-test/static/media/Oval.75f2ea56e1e293c65155.png",
+    "static/media/logo.svg": "/verenia-test/static/media/logo.10c8bef48009f9f036290393da64c909.svg",
+    "index.html": "/verenia-test/index.html",
+    "main.ed8de805.css.map": "/verenia-test/static/css/main.ed8de805.css.map",
+    "main.1bf0bd4c.js.map": "/verenia-test/static/js/main.1bf0bd4c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ed8de805.css",
+    "static/js/main.1bf0bd4c.js"
+  ]
+}
