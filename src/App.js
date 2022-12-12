@@ -18,19 +18,9 @@ function App() {
     fetch(BaseUrl)
       .then((res) => res.text())
       .then((res) => {
-        console.log(res);
         const data = res
-          .replaceAll("name:", '"name":')
-          .replaceAll("customer:", '"customer":')
-          .replaceAll("date:", '"date":')
-          .replaceAll("description:", '"description":')
-          .replaceAll("image:", '"image":')
-          .replaceAll("price:", '"price":')
-          .replaceAll("quantity:", '"quantity":')
-          .replaceAll("record:", '"record":')
-          .replaceAll("items:", '"items":')
-          .replaceAll("QUO000043", '"QUO000043"');
-        console.log(data);
+          .replaceAll(/(\w+):\s/g, '"$1": ')
+          .replaceAll(/"name": (\w+\d)/g, '"name": "$1"');
         return data;
       })
       .then((res) => JSON.parse(res))
@@ -38,10 +28,9 @@ function App() {
         setItems(data.items);
         setRecord(data.record);
         setIsLoaded(true);
-        console.log(items, record);
       })
       .catch((err) => console.error(err));
-  }, [items, record, isLoaded]);
+  }, []);
 
   return (
     <div className="App ">
@@ -85,78 +74,84 @@ function App() {
             <p>Date: {record.date}</p>
           </div>
 
-          <table className="table">
-            <thead className="table__head">
-              <tr className="table__row grid">
-                <th className="table__cell grid__item--2-3">Item</th>
-                <th className="table__cell grid__item--5-6"></th>
-                <th className="table__cell grid__item--7-8">Quantity</th>
-                <th className="table__cell grid__item--9-10">Unit Price</th>
-              </tr>
-            </thead>
+          <section className="table">
+            <div className="table__head">
+              <div className="table__row grid">
+                <p className="table__cell grid__item--2-3">Item</p>
+                <p className="table__cell grid__item--5-6"></p>
+                <p className="table__cell grid__item--7-8">Quantity</p>
+                <p className="table__cell grid__item--9-10">Unit Price</p>
+              </div>
+            </div>
             {items.map((item) => (
-              <>
-                <tbody className="tbody__desktop">
-                  <tr
+              <div key={item.name}>
+                <div className="tbody__desktop">
+                  <div
                     className={classNames("table__row1 grid", {
                       "table__row1--selected grid": +item.price.slice(1) < 100,
                     })}
                   >
-                    <td className="table__cell table__cell--info grid__item--1-4">
+                    <p className="table__cell table__cell--info grid__item--1-4">
                       <strong className="table__cell--title">
                         {item.name}
                       </strong>
-                      <p className="table__cell--p">{item.description}</p>
-                    </td>
-                    <td className="table__cell table__cell--img grid__item--5-6">
+                      <br />
+                      <span className="table__cell--p">{item.description}</span>
+                    </p>
+                    <p className="table__cell table__cell--img grid__item--5-6">
                       <img
                         className="table__cell--img"
                         alt="table__cell--img"
                         src={item.image}
                       ></img>
-                    </td>
-                    <td className="table__cell table__cell--p grid__item--7-8">
+                    </p>
+                    <p className="table__cell table__cell--p grid__item--7-8">
                       {item.quantity}
-                    </td>
-                    <td className="table__cell table__cell--p grid__item--9-10">
+                    </p>
+                    <p className="table__cell table__cell--p grid__item--9-10">
                       {item.price}
-                    </td>
-                  </tr>
-                </tbody>
-                <tbody className="tbody__mobile">
-                  <tr
+                    </p>
+                  </div>
+                </div>
+                <div className="tbody__mobile">
+                  <div
                     className={classNames("table__row1 grid", {
                       "table__row1--selected grid": +item.price.slice(1) < 100,
                     })}
                   >
-                    <td className="table__cell table__cell--img grid__item--1-5">
+                    <p className="table__cell table__cell--img grid__item--1-5">
                       <img
                         className="table__cell--img"
                         alt="table__cell--img"
                         src={item.image}
                       />
-                    </td>
-                    <div className="grid__item--6-10">
-                      <td className="table__cell table__cell--info">
+                    </p>
+                    <div className="grid__item--6-10 info">
+                      <p className="table__cell table__cell--info">
                         <strong className="table__cell--title">
                           {item.name}
                         </strong>
-                        <p className="table__cell--p">{item.description}</p>
-                      </td>
-                      <td className="table__cell table__cell--p table__cell--p1">
-                        <p className="quantity">Quantity:</p>&nbsp;
-                        <p>{item.quantity}</p>
-                      </td>
-                      <td className="table__cell table__cell--p table__cell--p1">
-                        <p className="price">Unit price:</p>&nbsp;
-                        <p>{item.price}</p>
-                      </td>
+                        <br />
+                        <span className="table__cell--p">
+                          {item.description}
+                        </span>
+                      </p>
+                      <br />
+                      <br />
+                      <p className="table__cell table__cell--p table__cell--p1">
+                        <span className="quantity">Quantity:</span>&nbsp;
+                        <span>{item.quantity}</span>
+                      </p>
+                      <p className="table__cell table__cell--p table__cell--p1">
+                        <span className="price">Unit price:</span>&nbsp;
+                        <span>{item.price}</span>
+                      </p>
                     </div>
-                  </tr>
-                </tbody>
-              </>
+                  </div>
+                </div>
+              </div>
             ))}
-          </table>
+          </section>
         </>
       )}
     </div>
