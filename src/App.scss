@@ -132,7 +132,7 @@ body {
 
     @include mq(1100) {
       top: 214px;
-      left: 100px;
+      left: 60px;
       height: 460px;
     }
 
@@ -220,7 +220,7 @@ body {
 
     @include mq(1100) {
       top: 186px;
-      left: 130px;
+      left: 90px;
       height: 160px;
     }
 
@@ -243,7 +243,7 @@ body {
     }
 
     @include mq(1100) {
-      top: 520px;
+      top: 500px;
       width: 280px;
       height: 280px;
     }
@@ -346,6 +346,14 @@ body {
     justify-content: center;
     padding: 60px 0 54px;
     border-bottom: 2px solid #c8c8c8;
+
+    &--selected {
+      background-color: yellow;
+    }
+
+    @include mq(767) {
+      padding: 20px 0 14px;
+    }
   }
 
   &__cell {
@@ -364,6 +372,15 @@ body {
         font-size: 20px;
         line-height: 120%;
       }
+
+      @include mq(767) {
+        margin-left: 0;
+      }
+
+      @include mq(400) {
+        font-size: 16px;
+        line-height: 100%;
+      }
     }
 
     &--title {
@@ -379,13 +396,34 @@ body {
       @include mq(1100) {
         font-size: 20px;
         line-height: 120%;
+        margin-bottom: 10px;
+      }
+
+      @include mq(400) {
+        font-size: 16px;
+        line-height: 100%;
       }
     }
 
+    &--p1 {
+      display: flex;
+      justify-content: flex-start;
+      margin-bottom: 10px;
+    }
+
     &--img {
+      width: 234px;
+      height: 178px;
+
       @include mq(1100) {
         width: 200px;
         height: 140px;
+      }
+
+      @include mq(767) {
+        width: 180px;
+        height: 126px;
+        margin: auto;
       }
     }
   }
@@ -396,6 +434,7 @@ body {
 
   @include mq(767) {
     display: block;
+    font-weight: bold;
   }
 }
 
@@ -404,6 +443,7 @@ body {
 
   @include mq(767) {
     display: block;
+    font-weight: bold;
   }
 }
 
@@ -412,5 +452,11 @@ body {
 
   @include mq(767) {
     display: block;
+  }
+}
+
+.tbody__desktop {
+  @include mq(767) {
+    display: none;
   }
 }
