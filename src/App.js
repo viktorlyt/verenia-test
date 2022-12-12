@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 function App() {
   const [items, setItems] = useState([]);
   const [record, setRecord] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const BaseUrl =
     "https://run.mocky.io/v3/066f2a99-252b-4744-ae58-17382be9c462";
@@ -36,14 +37,17 @@ function App() {
       .then((data) => {
         setItems(data.items);
         setRecord(data.record);
+        setIsLoaded(true);
         console.log(items, record);
       })
       .catch((err) => console.error(err));
-  }, []);
+  }, [items, record, isLoaded]);
 
   return (
     <div className="App ">
-      {items && record && (
+      {!isLoaded ? (
+        <h1 className="loading">Loading...</h1>
+      ) : (
         <>
           <header className="Header grid">
             <img src={logo} className="Header__logo" alt="logo" />
